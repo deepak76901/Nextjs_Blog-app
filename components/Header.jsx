@@ -13,7 +13,7 @@ import { FaMoon, FaSun } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme } from "@/redux/theme/themeSlice";
 import { signOutSuccess } from "@/redux/user/userSlice";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
@@ -61,6 +61,7 @@ export default function Header() {
   };
 
   return (
+    <Suspense>
     <Navbar className="border-b-2 sticky top-0 z-50">
       <Link
         href="/"
@@ -133,5 +134,6 @@ export default function Header() {
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>
+    </Suspense>
   );
 }

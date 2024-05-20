@@ -1,6 +1,6 @@
 "use client"
 import { Button, Select, TextInput } from "flowbite-react";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import PostCard from "@/components/PostCard";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -101,6 +101,7 @@ export default function Search() {
   };
 
   return (
+    <Suspense>
     <div className="min-h-screen flex flex-col md:flex-row">
       <div className="border-r border-gray-400 min-w-[300px]">
         <form className="flex flex-col gap-6 p-5" onSubmit={handleSubmit}>
@@ -169,5 +170,6 @@ export default function Search() {
         )}
       </div>
     </div>
+    </Suspense>
   );
 }

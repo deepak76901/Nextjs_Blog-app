@@ -1,5 +1,5 @@
 import { Sidebar, SidebarItem } from "flowbite-react";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import {
   HiArrowSmRight,
   HiUser,
@@ -43,6 +43,7 @@ export default function DashSidebar() {
   };
 
   return (
+    <Suspense>
     <Sidebar className="w-full sm:w-56 sm:fixed sm:left-0 z-50">
       <Sidebar.Items>
         <Sidebar.ItemGroup className="flex flex-col gap-1">
@@ -110,5 +111,6 @@ export default function DashSidebar() {
         </Sidebar.ItemGroup>
       </Sidebar.Items>
     </Sidebar>
+    </Suspense>
   );
 }

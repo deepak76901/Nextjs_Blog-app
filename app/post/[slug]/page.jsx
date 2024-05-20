@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import { Spinner, Button } from "flowbite-react";
 
@@ -65,6 +65,7 @@ export default function PostPage() {
       </div>
     );
   return (
+    <Suspense>
     <main className="p-3 min-h-screen flex flex-col max-w-6xl  mx-auto">
       {post && (
         <div>
@@ -111,5 +112,6 @@ export default function PostPage() {
         </div>
       </div>
     </main>
+    </Suspense>
   );
 }

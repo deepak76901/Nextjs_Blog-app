@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import DashSidebar from "@/components/DashSidebar";
 import DashProfile from "@/components/DashProfile";
 import DashPosts from "@/components/DashPosts";
@@ -8,6 +8,7 @@ import DashComments from "@/components/DashComments";
 import DashboardComp from "@/components/DashboardComp";
 import { redirect, usePathname, useSearchParams } from "next/navigation";
 import { useSelector } from "react-redux";
+
 
 export default function Dashboard() {
   const pathname = usePathname();
@@ -25,7 +26,7 @@ export default function Dashboard() {
   }, [searchParams]);
 
   return (
-    <>
+    <Suspense>
       {currentUser ? (
         <div className="min-h-screen flex flex-col sm:flex-row divide-x-2 dark:divide-x-0">
           {/* SideBar */}
@@ -44,6 +45,6 @@ export default function Dashboard() {
       ) : (
         redirect("/sign-in")
       )}
-    </>
+    </Suspense>
   );
 }
