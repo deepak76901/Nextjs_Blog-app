@@ -14,6 +14,8 @@ import {
 } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import Link from "next/link";
+import Image from "next/image";
+
 
 export default function DashPosts() {
   const { currentUser } = useSelector((state) => state.user);
@@ -40,7 +42,7 @@ export default function DashPosts() {
     if (currentUser.isAdmin) {
       fetchPosts();
     }
-  }, []);
+  }, [currentUser]);
 
   const handleShowMore = async () => {
     const startIndex = userPosts.length;
@@ -108,10 +110,12 @@ export default function DashPosts() {
                   </TableCell>
                   <TableCell>
                     <Link href={`/post/${post.slug}`}>
-                      <img
+                      <Image
                         src={post.image}
                         alt={post.title}
                         className=" w-16 h-10 object-cover bg-gray-400"
+                        width={1000}
+                        height={800}
                       />
                     </Link>
                   </TableCell>

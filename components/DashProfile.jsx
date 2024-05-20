@@ -28,6 +28,7 @@ import {
   signOutSuccess,
 } from "@/redux/user/userSlice";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function DashProfile() {
   const { currentUser, error, loading } = useSelector((state) => state.user);
@@ -56,7 +57,7 @@ export default function DashProfile() {
     if (imageFile) {
       uploadImage();
     }
-  }, [imageFile]);
+  }, [imageFile,uploadImage]);
 
   // #################  Code to upload file to Firebase Storage  ################
 
@@ -193,7 +194,7 @@ export default function DashProfile() {
           className="relative w-32 h-32 self-center cursor-pointer shadow-md rounded-full overflow-hidden"
           onClick={() => filePickerRef.current.click()}
         >
-          <img
+          <Image
             src={imageFileUrl || currentUser.profilePicture}
             alt="user"
             className={`rounded-full w-full h-full object-cover border-8 border-[lightgray] ${
@@ -201,6 +202,8 @@ export default function DashProfile() {
               imageFileUploadProgress < 100 &&
               "opacity-50"
             }`}
+            width={400}
+            height={400}
           />
           {imageFileUploadProgress && imageFileUploadProgress < 100 && (
             <CircularProgressbar

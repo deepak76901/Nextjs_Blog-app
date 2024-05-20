@@ -32,7 +32,7 @@ export default function Header() {
     if (urlSearchTerm) {
       setSearchTerm(urlSearchTerm);
     }
-  }, [dispatch]);
+  }, [dispatch,queryParams]);
 
   const handleSignOut = async (e) => {
     try {

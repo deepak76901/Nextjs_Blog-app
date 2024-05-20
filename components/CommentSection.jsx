@@ -12,6 +12,7 @@ import Comment from "./Comment";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function CommentSection({ postId }) {
   const { currentUser } = useSelector((state) => state.user);
@@ -129,10 +130,12 @@ export default function CommentSection({ postId }) {
       {currentUser ? (
         <div className="flex items-center gap-2 my-5 text-gray-600 text-md">
           <p>Signed in as: </p>
-          <img
+          <Image
             className="w-8 h-8 object-cover rounded-full"
             src={currentUser.profilePicture}
             alt=""
+            width={600}
+            height={500}
           />
           <Link
             href="/dashboard?tab=profile"
@@ -189,7 +192,7 @@ export default function CommentSection({ postId }) {
             </span>
           </p>
           {comments.map((comment) => (
-            <div className="flex justify-center">
+            <div className="flex justify-center" key={comment._id}>
               <Comment
                 key={comment._id}
                 comment={comment}

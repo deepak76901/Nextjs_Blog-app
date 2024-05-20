@@ -15,6 +15,7 @@ import {
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { FaCheck, FaTimes } from "react-icons/fa";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function DashUsers() {
   const { currentUser } = useSelector((state) => state.user);
@@ -41,7 +42,7 @@ export default function DashUsers() {
     if (currentUser.isAdmin) {
       fetchUsers();
     }
-  }, []);
+  }, [currentUser]);
 
   const handleShowMore = async () => {
     const startIndex = users.length;
@@ -104,10 +105,12 @@ export default function DashUsers() {
                     {new Date(user.createdAt).toLocaleDateString()}
                   </TableCell>
                   <TableCell>
-                    <img
+                    <Image
                       src={user.profilePicture}
                       alt={user.username}
                       className="w-10 h-10 object-cover bg-gray-400 rounded-full"
+                      width={400}
+                      height={400}
                     />
                   </TableCell>
                   <TableCell className="font-medium">{user.username}</TableCell>

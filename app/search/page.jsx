@@ -53,7 +53,7 @@ export default function Search() {
       }
     };
     fetchPosts();
-  }, [searchParams]);
+  }, [searchParams,sidebarData]);
 
   const handleChange = (e) => {
     if (e.target.id === "searchTerm") {

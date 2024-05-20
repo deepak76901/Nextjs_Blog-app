@@ -14,6 +14,7 @@ import { app } from "@/utils/firebase";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function CreatePost() {
   const router = useRouter();
@@ -140,10 +141,12 @@ export default function CreatePost() {
         </div>
         {imageUploadError && <Alert color="failure">{imageUploadError}</Alert>}
         {formData.image && (
-          <img
+          <Image
             src={`${formData.image}`}
             alt="upload"
             className="w-full h-72 object-cover"
+            width={1000}
+            height={600}
           />
         )}
         <ReactQuill

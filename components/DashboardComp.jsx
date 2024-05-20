@@ -16,6 +16,7 @@ import {
   TableRow,
 } from "flowbite-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function DashboardComp() {
   const { currentUser } = useSelector((state) => state.user);
@@ -153,10 +154,12 @@ export default function DashboardComp() {
                   <TableBody className="divide-y text-gray-700 dark:text-gray-200">
                     <TableRow key={user._id}>
                       <TableCell>
-                        <img
+                        <Image
                           src={user.profilePicture}
                           alt={user.username}
                           className="h-10 w-10 rounded-full object-cover"
+                          height={300}
+                          width={300}
                         />
                       </TableCell>
                       <TableCell>{user.username}</TableCell>
@@ -216,9 +219,11 @@ export default function DashboardComp() {
                   <TableBody className="divide-y text-gray-700 dark:text-gray-200">
                     <TableRow key={post._id}>
                       <TableCell className="w-28">
-                        <img
+                        <Image
                           src={post.image}
                           className="h-10 w-14 rounded-md "
+                          width={400}
+                          height={400}
                         />
                       </TableCell>
                       <TableCell className="w-96">

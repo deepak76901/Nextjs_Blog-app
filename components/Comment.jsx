@@ -3,6 +3,7 @@ import moment from "moment";
 import { FaThumbsUp } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Button, Textarea } from "flowbite-react";
+import Image from "next/image";
 
 export default function Comment({ comment, onLike, onEdit, onDelete }) {
   const { currentUser } = useSelector((state) => state.user);
@@ -49,10 +50,12 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
     <div className="flex flex-row p-4 border-b border-gray-400 dark:border-gray-600   items-center w-full md:w-[40vw]">
       {user && (
         <div>
-          <img
+          <Image
             src={user.profilePicture}
             alt={user.username}
             className="h-10 w-10 rounded-full object-cover"
+            width={600}
+            height={500}
           />
         </div>
       )}
