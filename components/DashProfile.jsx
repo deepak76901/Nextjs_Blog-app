@@ -57,7 +57,7 @@ export default function DashProfile() {
     if (imageFile) {
       uploadImage();
     }
-  }, [imageFile,uploadImage]);
+  }, [imageFile]);
 
   // #################  Code to upload file to Firebase Storage  ################
 

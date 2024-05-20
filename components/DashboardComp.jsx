@@ -153,7 +153,7 @@ export default function DashboardComp() {
                 users.map((user) => (
                   <TableBody className="divide-y text-gray-700 dark:text-gray-200">
                     <TableRow key={user._id}>
-                      <TableCell>
+                      <TableCell key={user._id}>
                         <Image
                           src={user.profilePicture}
                           alt={user.username}
@@ -188,7 +188,7 @@ export default function DashboardComp() {
                 comments.map((comment) => (
                   <TableBody className="divide-y text-gray-700 dark:text-gray-200">
                     <TableRow key={comment._id}>
-                      <TableCell className="w-96">
+                      <TableCell className="w-96" key={comment._id}>
                         <p className="line-clamp-2">{comment.content}</p>
                       </TableCell>
                       <TableCell>{comment.numberOfLikes}</TableCell>
@@ -218,7 +218,7 @@ export default function DashboardComp() {
                 posts.map((post) => (
                   <TableBody className="divide-y text-gray-700 dark:text-gray-200">
                     <TableRow key={post._id}>
-                      <TableCell className="w-28">
+                      <TableCell className="w-28" key={post._id}>
                         <Image
                           src={post.image}
                           className="h-10 w-14 rounded-md "
