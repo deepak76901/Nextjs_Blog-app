@@ -151,9 +151,12 @@ export default function DashboardComp() {
               </TableHead>
               {users &&
                 users.map((user) => (
-                  <TableBody className="divide-y text-gray-700 dark:text-gray-200">
+                  <TableBody
+                    className="divide-y text-gray-700 dark:text-gray-200"
+                    key={"user table"}
+                  >
                     <TableRow key={user._id}>
-                      <TableCell key={user._id}>
+                      <TableCell>
                         <Image
                           src={user.profilePicture}
                           alt={user.username}
@@ -186,9 +189,12 @@ export default function DashboardComp() {
               </TableHead>
               {comments &&
                 comments.map((comment) => (
-                  <TableBody className="divide-y text-gray-700 dark:text-gray-200">
+                  <TableBody
+                    className="divide-y text-gray-700 dark:text-gray-200"
+                    key={"comment table"}
+                  >
                     <TableRow key={comment._id}>
-                      <TableCell className="w-96" key={comment._id}>
+                      <TableCell className="w-96">
                         <p className="line-clamp-2">{comment.content}</p>
                       </TableCell>
                       <TableCell>{comment.numberOfLikes}</TableCell>
@@ -216,9 +222,12 @@ export default function DashboardComp() {
               </TableHead>
               {posts &&
                 posts.map((post) => (
-                  <TableBody className="divide-y text-gray-700 dark:text-gray-200">
+                  <TableBody
+                    className="divide-y text-gray-700 dark:text-gray-200"
+                    key={"posts table"}
+                  >
                     <TableRow key={post._id}>
-                      <TableCell className="w-28" key={post._id}>
+                      <TableCell className="w-28">
                         <Image
                           src={post.image}
                           className="h-10 w-14 rounded-md "
