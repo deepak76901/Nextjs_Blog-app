@@ -41,7 +41,7 @@ export default function PostPage() {
       }
     };
     fetchPost();
-  }, []);
+  }, [slug]);
 
   useEffect(() => {
     try {
