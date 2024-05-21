@@ -13,17 +13,40 @@ import {
 import { app } from "@/utils/firebase";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
+import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 
-export default function CreatePost() {
+export default function UpdatePost() {
   const router = useRouter();
   const [imageFile, setImageFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
   const [imageUploadError, setImageUploadError] = useState(null);
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
-  console.log(formData,publishError);
+  const { postId } = useParams();
+  const { currentUser } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    try {
+      const fetchPost = async () => {
+        const res = await fetch(`/api/post/getposts?postId=${postId}`);
+        const data = await res.json();
+        if (!res.ok) {
+          console.log(data.message);
+          setPublishError(data.message);
+          return;
+        }
+        if (res.ok) {
+          setPublishError(null);
+          setFormData(data.posts[0]);
+        }
+      };
+      fetchPost();
+    } catch (error) {
+      console.log(error.message);
+    }
+  }, [postId]);
 
   const handleUploadImage = async () => {
     try {
@@ -62,23 +85,27 @@ export default function CreatePost() {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await fetch("/api/post/create", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      const res = await fetch(
+        `/api/post/updatepost/${postId}/${currentUser._id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
       const data = await res.json();
       console.log(data);
       if (!res.ok) {
         setPublishError(data.message);
         return;
-      } else {
+      }
+      if (res.ok) {
         setPublishError(null);
-        router.push(`/post/${data.slug}`)
+        router(`/post/${data.slug}`);
       }
     } catch (error) {
       setPublishError("Something went wrong");
@@ -88,9 +115,9 @@ export default function CreatePost() {
   return (
     <div className="p-3 max-w-3xl mx-auto min-h-screen">
       <h1 className="text-center text-3xl my-7 font-semibold text-gray-700">
-        Create a Post
+        Update Post
       </h1>
-      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+      <form className="flex flex-col gap-4" onSubmit={handleUpdate}>
         <div className="flex flex-col gap-4 sm:flex-row sm:justify-between">
           <TextInput
             type="text"
@@ -101,11 +128,13 @@ export default function CreatePost() {
             onChange={(e) =>
               setFormData({ ...formData, title: e.target.value })
             }
+            value={formData.title}
           />
           <Select
             onChange={(e) =>
               setFormData({ ...formData, category: e.target.value })
             }
+            value={formData.category}
           >
             <option value="uncategorized">Select a category</option>
             <option value="javascript">JavaScript</option>
@@ -145,7 +174,7 @@ export default function CreatePost() {
             src={`${formData.image}`}
             alt="upload"
             className="w-full h-72 object-cover"
-            width={1000}
+            width={800}
             height={600}
           />
         )}
@@ -155,9 +184,10 @@ export default function CreatePost() {
           placeholder="Write something..."
           required
           onChange={(value) => setFormData({ ...formData, content: value })}
+          value={formData.content}
         />
         <Button type="submit" gradientDuoTone="purpleToPink" className="">
-          Publish
+          Update Post
         </Button>
         {publishError && <Alert color="failure">{publishError}</Alert>}
       </form>

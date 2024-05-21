@@ -4,6 +4,7 @@ import { ThemeModeScript } from "flowbite-react";
 import StoreProvider from "@/utils/StoreProvider";
 import Header from "@/components/Header";
 import { Suspense } from "react";
+import FooterComp from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
         <StoreProvider>
           <Suspense><Header /></Suspense>
           {children}
+          <FooterComp/>
         </StoreProvider>
       </body>
     </html>

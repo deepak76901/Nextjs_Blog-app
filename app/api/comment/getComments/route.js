@@ -1,5 +1,6 @@
 import { connectDB } from "@/db/connectDB";
 import Comment from "@/models/comment.model";
+import { headers } from "next/headers";
 
 export async function GET(request) {
   await connectDB();

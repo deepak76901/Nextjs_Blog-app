@@ -14,12 +14,14 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const res = await fetch(`/api/user/${comment.userId}`);
+        const res = await fetch(`/api/comment/user/${comment._id}`);
         if (res.ok) {
           const data = await res.json();
           setUser(data);
         }
-      } catch (error) {}
+      } catch (error) {
+        console.log("Failed to get user of comment")
+      }
     };
     getUser();
   }, [comment]);

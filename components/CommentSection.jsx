@@ -36,7 +36,7 @@ export default function CommentSection({ postId }) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          content: comment,
+          content: comment.replace(/\s+/g, " ").trim(),
           postId,
           userId: currentUser._id,
         }),

@@ -29,6 +29,7 @@ import {
 } from "@/redux/user/userSlice";
 import Link from "next/link";
 import Image from "next/image";
+import { Loader2 } from "lucide-react";
 
 export default function DashProfile() {
   const { currentUser, error, loading } = useSelector((state) => state.user);
@@ -43,7 +44,6 @@ export default function DashProfile() {
   const [formData, setFormData] = useState({});
   const filePickerRef = useRef();
   const dispatch = useDispatch();
-  console.log(imageFileUploadProgress, imageFileUploadError);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];

@@ -16,7 +16,7 @@ export default function PostPage() {
   const [error, setError] = useState(false);
   const [post, setPost] = useState(null);
   const [recentPosts, setRecentPosts] = useState([]);
-  console.log(post)
+
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -46,7 +46,7 @@ export default function PostPage() {
   useEffect(() => {
     try {
       const fetchRecentPosts = async () => {
-        const res = await fetch(`/api/post/getPosts?limit=3`);
+        const res = await fetch(`/api/post/getposts?limit=3`);
         const data = await res.json();
         if (res.ok) {
           setRecentPosts(data.posts);
@@ -73,16 +73,16 @@ export default function PostPage() {
           </h1>
           <Link
             href={`/search?category=${post && post.category}`}
-            className="self-center mt-5"
+            className="self-center mt-5 "
           >
-            <Button color="gray" pill size="sm">
+            <Button color="gray" pill size="sm" className="mx-auto">
               {post && post.category}
             </Button>
           </Link>
           <Image
             src={post && post.image}
             alt={post && post.title}
-            className="mt-10 p-3 max-h-[600px] w-full object-cover"
+            className="mt-6 p-3 max-h-[600px] w-full object-cover"
             width={700}
             height={500}
           />

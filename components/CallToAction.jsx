@@ -22,7 +22,7 @@ export default function CallToAction() {
         <Image
           src="/ipl.jpg"
           alt="image"
-          width={500}
+          width={400}
           height={400}
           className="rounded-sm"
         />
